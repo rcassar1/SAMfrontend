@@ -1,0 +1,54 @@
+<header>
+  <div class="top">
+    <h1>WELCOME TO SAM</h1>
+  </div>
+</header>
+
+<main>
+  <div class="card flex flex-wrap justify-center items-end gap-4">
+    <div class="form-control">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          id="email"
+          name="email"
+          [ngModel]="input"
+          autocomplete="on"
+        />
+        <label for="email">Student E-mail Address</label>
+      </p-floatlabel>
+      <button
+        pButton
+        pRipple
+        class="btn"
+        label="Submit and Enter"
+        [raised]="true"
+        severity="success"
+        icon="pi pi-directions"
+        size="large"
+        raised="1px"
+        (onclick)="onLogin()"
+      ></button>
+    </div>
+  </div>
+</main>
+
+<div class="container">
+  <h2 class="heading">Template Driven Form</h2>
+  <form #userForm="ngForm" (ngSubmit)="submitForm(userForm)">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        name="email"
+        [(ngModel)]="input"
+        required
+        email
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,83 @@
+<html>
+  <body>
+    <header>
+      <div class="top">
+        <h1>WELCOME TO SAM</h1>
+        <h3>Please Choose From The Below</h3>
+      </div>
+    </header>
+    <main>
+      <section>
+        <div class="flex-container">
+          <p-fluid>
+            <a
+              routerLink="/attendance"
+              pButton
+              pRipple
+              class="btn"
+              label="Attendance"
+              [raised]="true"
+              severity="success"
+              icon="pi pi-check-square"
+              size="large"
+              raised="1px"
+            ></a>
+            <br /><br />
+            <a
+              routerLink="/diary"
+              pButton
+              pRipple
+              class="btn"
+              label="Diary"
+              [raised]="true"
+              severity="info"
+              icon="pi pi-book"
+              size="large"
+              raised="1px"
+            ></a>
+            <br /><br />
+
+            <a
+              routerLink="/announcements"
+              pButton
+              pRipple
+              class="btn"
+              label="Announcements"
+              [raised]="true"
+              severity="warn"
+              icon="pi pi-megaphone"
+              size="large"
+              raised="1px"
+            ></a>
+            <br /><br />
+
+            <a
+              pButton
+              pRipple
+              class="btn"
+              label="Assessments"
+              [raised]="true"
+              severity="help"
+              icon="pi pi-chart-line"
+              size="large"
+              raised="1px"
+            ></a>
+            <br /><br />
+            <a
+              pButton
+              pRipple
+              routerLink="/studentscalendar"
+              class="btn"
+              label="Calendar"
+              [raised]="true"
+              severity="danger"
+              icon="pi pi-calendar"
+              size="large"
+              raised="1px"
+            ></a>
+          </p-fluid>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

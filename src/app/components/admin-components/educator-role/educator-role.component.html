@@ -1,0 +1,96 @@
+<p-table
+  [value]="EducatorRoleList"
+  stripedRows
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template #header>
+    <tr>
+      <th>Role</th>
+      <th>
+        Action &nbsp; &nbsp; &nbsp; &nbsp;
+        <span
+          >&nbsp;<p-button
+            label="Add"
+            severity="info"
+            icon="pi pi-plus"
+            [raised]="true"
+            size="small"
+            (onClick)="addNew()"
+        /></span>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-roles>
+    <tr>
+      <td>
+        <div *ngIf="roles.isEdit">
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="roles.role"
+            class="form-control"
+          />
+        </div>
+        <div *ngIf="!roles.isEdit">
+          {{ roles.role }}
+        </div>
+      </td>
+      <td>
+        <div *ngIf="roles.isEdit">
+          <span>
+            <p-button
+              *ngIf="roles.id !== '0'"
+              label="Update"
+              severity="success"
+              icon="pi pi-pencil"
+              [raised]="true"
+              size="small"
+              (onClick)="onUpdate(roles)"
+          /></span>
+          &nbsp;
+          <span>
+            <p-button
+              *ngIf="roles.id === '0'"
+              label="Save"
+              severity="info"
+              icon="pi pi-save"
+              [raised]="true"
+              size="small"
+              (onClick)="onNewCreate(roles)"
+          /></span>
+          &nbsp;
+          <span>
+            <p-button
+              label="Cancel"
+              severity="contrast"
+              icon="pi pi-trash"
+              [raised]="true"
+              size="small"
+              (onClick)="onCancel(roles)"
+          /></span>
+        </div>
+        <div *ngIf="!roles.isEdit">
+          <span
+            ><p-button
+              label="Edit"
+              severity="warn"
+              icon="pi pi-pencil"
+              [raised]="true"
+              size="small"
+              (onClick)="onEdit(roles)"
+          /></span>
+          &nbsp;
+          <span
+            ><p-button
+              label="Delete"
+              severity="danger"
+              icon="pi pi-trash"
+              [raised]="true"
+              size="small"
+              (onClick)="onDelete(roles._id)"
+          /></span>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

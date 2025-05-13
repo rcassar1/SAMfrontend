@@ -1,0 +1,31 @@
+<header>
+  <div class="top">
+    <h1>DIARY</h1>
+  </div>
+  <app-navigation-bar></app-navigation-bar>
+</header>
+<main>
+  <div class="date">
+    <div class="card flex justify-center">
+      <p-datepicker
+        [styleClass]="'custom'"
+        class="max-w-full"
+        [(ngModel)]="date"
+        [inline]="true"
+        [showWeek]="false"
+        (onSelect)="newDate($event)"
+      />
+    </div>
+  </div>
+  <hr />
+
+  <div class="diaryDisplay">
+    <div class="card flex justify-center" *ngFor="let diary of DiaryS">
+      <p-fieldset legend="{{ diary.date | date : 'MMM d, y' }}">
+        <p class="m-0">
+          {{ diary.diary }}
+        </p>
+      </p-fieldset>
+    </div>
+  </div>
+</main>

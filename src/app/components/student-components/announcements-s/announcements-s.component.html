@@ -1,0 +1,23 @@
+<header>
+  <div class="top">
+    <h1>ANNOUNCEMENTS</h1>
+  </div>
+  <app-navigation-bar></app-navigation-bar>
+</header>
+<main>
+  <div class="card">
+    <p-accordion [value]="0">
+      @for (announcement of announcements; track announcement._id) {
+      <p-accordion-panel [value]="announcement._id">
+        <p-accordion-header
+          >{{ announcement.date | date : "MMM d, y" }} - - -
+          {{ announcement.title }}
+        </p-accordion-header>
+        <p-accordion-content>
+          <p class="m-0">{{ announcement.announcement }}</p>
+        </p-accordion-content>
+      </p-accordion-panel>
+      }
+    </p-accordion>
+  </div>
+</main>

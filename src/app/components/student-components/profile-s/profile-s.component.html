@@ -1,0 +1,26 @@
+<header>
+  <div class="top">
+    <h1>WELCOME TO SAM</h1>
+  </div>
+</header>
+<main>
+  <div class="box">
+    <p-fieldset legend="Login">
+      <p-floatlabel variant="on">
+        <input
+          class="input"
+          pInputText
+          id="email"
+          [formControl]="email"
+          autocomplete="off"
+        />
+        <label for="email">Student's Email Address</label>
+      </p-floatlabel>
+      <p-floatlabel>{{ studentEmail }}</p-floatlabel>
+      <br />
+      <button class="button" pButton pRipple type="submit" (click)="onSubmit()">
+        Submit & Enter
+      </button>
+    </p-fieldset>
+  </div>
+</main>

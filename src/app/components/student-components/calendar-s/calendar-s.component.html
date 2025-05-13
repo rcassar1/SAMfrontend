@@ -1,0 +1,65 @@
+<header>
+  <div class="top">
+    <h1>CALENDAR</h1>
+  </div>
+  <app-navigation-bar></app-navigation-bar>
+</header>
+<main>
+  <div class="date">
+    <div class="card flex justify-center">
+      <p-datepicker
+        [styleClass]="'custom'"
+        class="max-w-full"
+        [(ngModel)]="date"
+        [inline]="true"
+        [showWeek]="false"
+        (onSelect)="newDate($event)"
+      />
+    </div>
+  </div>
+  <hr />
+
+  <div class="calendarDisplay">
+    <div class="card flex justify-center">
+      <p-accordion [value]="0">
+        @for (calendar of CalendarS; track calendar._id) {
+        <p-accordion-panel [value]="calendar._id">
+          <p-accordion-header
+            >{{ calendar.date | date : "MMM d, y" }} - - -
+            {{ calendar.title }}
+            <div *ngIf="!approved">
+              <div
+                pButton
+                pRipple
+                class="btn"
+                [outlined]="false"
+                label="Approve"
+                severity="success"
+                icon="pi pi-check-square"
+                raised="1px"
+                onclick="onApprove($event)"
+              ></div>
+            </div>
+            <div *ngIf="approved">
+              <div
+                pButton
+                pRipple
+                class="btn"
+                [outlined]="true"
+                label="Already Approved"
+                severity="success"
+                icon="pi pi-check-square"
+                raised="1px"
+                onclick="onApprove($event)"
+              ></div>
+            </div>
+          </p-accordion-header>
+          <p-accordion-content>
+            <p class="m-0">{{ calendar.calendar }}</p>
+          </p-accordion-content>
+        </p-accordion-panel>
+        }
+      </p-accordion>
+    </div>
+  </div>
+</main>

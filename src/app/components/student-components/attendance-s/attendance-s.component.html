@@ -1,0 +1,60 @@
+<header>
+  <div class="top">
+    <h1>ATTENDANCE PAGE</h1>
+  </div>
+  <app-navigation-bar></app-navigation-bar>
+</header>
+<main>
+  <section class="attendanceDisplay">
+    <p-table
+      [value]="AttendanceSList"
+      stripedRows
+      [tableStyle]="{ 'min-width': '50rem' }"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Date</th>
+          <th>Absent Reason</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-AttendanceSList>
+        <tr>
+          <td>
+            <div>{{ AttendanceSList.date | date : "MMM d, y" }}</div>
+          </td>
+          <td>
+            <div>
+              {{ AttendanceSList.attendanceStatusID.attendanceStatus }}
+            </div>
+          </td>
+          <td>
+            <span>
+              <p-toast />
+              <div class="uploadBox">
+                <p-fileupload
+                  #fileUpload
+                  name="files"
+                  url="http://localhost:3000/attendance/upload"
+                  (onUpload)="onUpload($event)"
+                  [multiple]="true"
+                  accept="image/*"
+                  maxFileSize="10000000"
+                  mode="advanced"
+                >
+                  <ng-template #content>
+                    <ul *ngIf="uploadedFiles.length">
+                      <li *ngFor="let file of uploadedFiles">
+                        {{ file.name }} - {{ file.size }} bytes
+                      </li>
+                    </ul>
+                  </ng-template>
+                </p-fileupload>
+              </div>
+            </span>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </section>
+</main>
