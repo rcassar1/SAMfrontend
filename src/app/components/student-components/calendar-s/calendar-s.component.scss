@@ -13,9 +13,35 @@ h1 {
   margin-top: 3%;
 }
 
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.date {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 11%;
+  margin-left: 0;
+  margin-bottom: 50px;
+  padding-left: 40px;
+}
+
+.vl {
+  margin-top: 7%;
+  border-left: 1px solid #ef4444;
+  height: 370px;
+}
+
 .calendarDisplay {
-  padding-left: 150px;
-  padding-right: 150px;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  width: auto;
+  margin-top: 11%;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
 .flex-container {
@@ -28,7 +54,8 @@ h1 {
 
 .btn {
   text-decoration: none;
-  margin-right: 15px;
+  margin-left: 80%;
+  margin-bottom: 15px;
 }
 
 .date {
@@ -36,6 +63,7 @@ h1 {
   justify-items: center;
 }
 
-.hw {
-  justify-items: center;
+.foot {
+  background-color: #ef4444;
+  min-height: 100px;
 }

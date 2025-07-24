@@ -15,7 +15,7 @@
         <tr>
           <th>Date</th>
           <th>Absent Reason</th>
-          <th>Action</th>
+          <th>Please Upload Justification Note or Certificate</th>
         </tr>
       </ng-template>
       <ng-template #body let-AttendanceSList>
@@ -30,10 +30,8 @@
           </td>
           <td>
             <span>
-              <p-toast />
               <div class="uploadBox">
                 <p-fileupload
-                  #fileUpload
                   name="files"
                   url="http://localhost:3000/attendance/upload"
                   (onUpload)="onUpload($event)"
@@ -58,3 +56,5 @@
     </p-table>
   </section>
 </main>
+<p-toast position="top-right"></p-toast>
+<footer class="foot"></footer>

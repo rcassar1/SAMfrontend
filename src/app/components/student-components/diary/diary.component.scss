@@ -13,9 +13,8 @@ h1 {
   margin-top: 3%;
 }
 
-.diaryDisplay {
-  padding-left: 150px;
-  padding-right: 150px;
+.calendarDisplay {
+  margin-left: 0;
 }
 
 .flex-container {
@@ -31,11 +30,43 @@ h1 {
   margin-right: 15px;
 }
 
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
 .date {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   margin-top: 11%;
-  justify-items: center;
+  margin-left: 0;
+  margin-bottom: 50px;
+  padding-left: 40px;
+}
+
+.vl {
+  margin-top: 7%;
+  border-left: 1px solid #0ea5e9;
+  height: 370px;
+}
+
+.diaryDisplay {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  width: auto;
+  margin-top: 11%;
+  margin-bottom: 35px;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
 .hw {
   justify-items: center;
+}
+
+.foot {
+  background-color: #0ea5e9;
+  min-height: 100px;
 }

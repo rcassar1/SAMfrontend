@@ -14,9 +14,9 @@ export class CalendarService {
     return this.http.get<Calendar>(`http://localhost:3000/diary/id/${id}`);
   }
 
-  getCalendar(): Observable<Calendar[]> {
+  getCalendar(classID: string, studentID: string): Observable<Calendar[]> {
     return this.http.get<Calendar[]>(
-      `http://localhost:3000/studentcalendar/all`
+      `http://localhost:3000/studentcalendar/all?classID=${classID}&studentID=${studentID}`
     );
   }
 

@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Attendance } from '../../../models/attendance';
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -9,7 +8,7 @@ import { FluidModule } from 'primeng/fluid';
 import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
-import { ToastModule } from 'primeng/toast';
+import { Toast } from 'primeng/toast';
 import {
   FileUpload,
   FileUploadEvent,
@@ -33,7 +32,8 @@ interface UploadEvent {
     CommonModule,
     ButtonModule,
     FormsModule,
-    ToastModule,
+
+    Toast,
     RippleModule,
     FluidModule,
     RouterModule,
@@ -46,7 +46,6 @@ interface UploadEvent {
   providers: [MessageService],
 })
 export class AttendanceComponent implements OnInit {
-  private MessageService = inject(MessageService);
   pageSize: number = 5;
   pageIndex: number = 0;
   AttendanceSList: Attendance[] = [];
@@ -61,13 +60,14 @@ export class AttendanceComponent implements OnInit {
    *
    */
   constructor(
-    private http: HttpClient,
     private service: AttendanceSService,
-    private messageService: MessageService,
-    private dataService: DataService
+    private dataService: DataService,
+    private messageService: MessageService
   ) {}
+
   async ngOnInit() {
     this.getAttendance();
+    this.notify();
   }
 
   async getLoginStudent() {
@@ -89,8 +89,13 @@ export class AttendanceComponent implements OnInit {
     });
   }
 
-  show1() {
-    this.notificationService.displayNotification();
+  notify() {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Attendance Displayed',
+      detail: 'Attendance requiring attention has been displayed',
+      life: 3000,
+    });
   }
 
   async onUpload(event: FileUploadEvent) {
@@ -98,7 +103,7 @@ export class AttendanceComponent implements OnInit {
     //   this.uploadedFiles.push(file);
     // }
 
-    this.MessageService.add({
+    this.messageService.add({
       severity: 'info',
       summary: 'File Uploaded',
       detail: '',

@@ -8,6 +8,7 @@ import { TagModule } from 'primeng/tag';
 import { MessageService } from 'primeng/api';
 import { AccordionModule } from 'primeng/accordion';
 import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
+import { Toast } from 'primeng/toast';
 
 @Component({
   selector: 'app-announcements-s',
@@ -18,18 +19,27 @@ import { NavigationBarComponent } from '../navigation-bar/navigation-bar.compone
     TagModule,
     AccordionModule,
     NavigationBarComponent,
+    Toast,
   ],
   templateUrl: './announcements-s.component.html',
   styleUrl: './announcements-s.component.scss',
   providers: [MessageService],
 })
 export class AnnouncementsSComponent implements OnInit {
+  private MessageService = inject(MessageService);
+
   announcements: AnnouncementsS[] = [];
 
   constructor(private service: AnnouncementsSService) {}
 
   ngOnInit() {
     this.getAnnouncements();
+    this.MessageService.add({
+      severity: 'info',
+      summary: 'Announcement Displayed',
+      detail: "Today's Diary has been displayed",
+      life: 3000,
+    });
   }
 
   async getAnnouncements() {

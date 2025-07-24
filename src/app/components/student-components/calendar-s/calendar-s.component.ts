@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, viewChild } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MessageService } from 'primeng/api';
 import { DatePicker } from 'primeng/datepicker';
 import { FieldsetModule } from 'primeng/fieldset';
 import { CalendarService } from '../../../services/student-services/calendar/calendar.service';
@@ -11,6 +10,8 @@ import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
 import { EventApprovalsService } from '../../../services/student-services/eventApprovals/event-approvals.service';
 import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
+import { Toast } from 'primeng/toast';
+import { RippleModule } from 'primeng/ripple';
 
 const dateToday = new Date();
 
@@ -24,9 +25,12 @@ const dateToday = new Date();
     ButtonModule,
     AccordionModule,
     NavigationBarComponent,
+    Toast,
+    RippleModule,
   ],
   templateUrl: './calendar-s.component.html',
   styleUrl: './calendar-s.component.scss',
+  providers: [],
 })
 export class CalendarSComponent implements OnInit {
   date: Date | undefined = dateToday;
@@ -34,6 +38,7 @@ export class CalendarSComponent implements OnInit {
   ApprovedEventsList: ApprovalsS[] = [];
 
   classID: string = '67bd77ef75c003636fc9672b';
+  studentID: string = '67bdb25880ad5bfceafe1525';
   calendarDate: string = '2025-05-05';
   newDiaryDate!: Date;
   approved = false;
@@ -43,16 +48,15 @@ export class CalendarSComponent implements OnInit {
    */
   constructor(
     private service: CalendarService,
-    private approvalService: EventApprovalsService,
-    private messageService: MessageService
+    private approvalService: EventApprovalsService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getCalendar();
   }
 
-  getCalendar() {
-    this.service.getCalendar().subscribe({
+  async getCalendar() {
+    this.service.getCalendar(this.classID, this.studentID).subscribe({
       next: (d) => {
         this.CalendarS = d;
       },
@@ -64,19 +68,25 @@ export class CalendarSComponent implements OnInit {
     this.getCalendar();
   }
 
-  async onApprove() {
-    var whichStudent = '';
-    var whichCalendar = '68188aafae71036529eef9eb';
-    await this.service
-      .approvedEvent(whichStudent, whichCalendar)
-      .subscribe((res: any) => {
-        if ((res = true)) {
-          this.approved = true;
-          this.getCalendar();
-        } else {
-          alert(res.message);
-        }
-      });
+  onApprove() {
+    // var whichStudent = '';
+    // var whichCalendar = '68188aafae71036529eef9eb';
+    // await this.service
+    //   .approvedEvent(whichStudent, whichCalendar)
+    //   .subscribe((res: any) => {
+    //     if ((res = true)) {
+    //       this.approved = true;
+    //       this.getCalendar();
+    //     } else {
+    //       alert(res.message);
+    //     }
+    //   });
+    // this.MessageService.add({
+    //   severity: 'info',
+    //   summary: 'Event approved',
+    //   detail: 'Student has been approved for displayed event',
+    //   life: 3000,
+    // });
   }
 }
 

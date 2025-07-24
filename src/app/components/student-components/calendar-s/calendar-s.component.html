@@ -5,8 +5,8 @@
   <app-navigation-bar></app-navigation-bar>
 </header>
 <main>
-  <div class="date">
-    <div class="card flex justify-center">
+  <section>
+    <div class="date">
       <p-datepicker
         [styleClass]="'custom'"
         class="max-w-full"
@@ -16,50 +16,50 @@
         (onSelect)="newDate($event)"
       />
     </div>
-  </div>
-  <hr />
-
-  <div class="calendarDisplay">
-    <div class="card flex justify-center">
+    <p-toast></p-toast>
+    <div class="vl"></div>
+    <div class="calendarDisplay">
+      <p-toast position="top-right" />
       <p-accordion [value]="0">
         @for (calendar of CalendarS; track calendar._id) {
         <p-accordion-panel [value]="calendar._id">
           <p-accordion-header
             >{{ calendar.date | date : "MMM d, y" }} - - -
             {{ calendar.title }}
-            <div *ngIf="!approved">
-              <div
-                pButton
-                pRipple
-                class="btn"
-                [outlined]="false"
-                label="Approve"
-                severity="success"
-                icon="pi pi-check-square"
-                raised="1px"
-                onclick="onApprove($event)"
-              ></div>
-            </div>
-            <div *ngIf="approved">
-              <div
-                pButton
-                pRipple
-                class="btn"
-                [outlined]="true"
-                label="Already Approved"
-                severity="success"
-                icon="pi pi-check-square"
-                raised="1px"
-                onclick="onApprove($event)"
-              ></div>
-            </div>
           </p-accordion-header>
           <p-accordion-content>
-            <p class="m-0">{{ calendar.calendar }}</p>
+            <p class="m-0" [innerHTML]="calendar.calendar"></p>
           </p-accordion-content>
+          <div *ngIf="!approved">
+            <button
+              pButton
+              pRipple
+              class="btn"
+              [outlined]="false"
+              label="Approve"
+              severity="success"
+              icon="pi pi-check-square"
+              raised="1px"
+              onclick="onApprove()"
+            ></button>
+          </div>
+          <div *ngIf="approved">
+            <button
+              pButton
+              pRipple
+              class="btn"
+              [outlined]="true"
+              label="Already Approved"
+              severity="info"
+              icon="pi pi-check-square"
+              raised="1px"
+              onclick="onApprove()"
+            ></button>
+          </div>
         </p-accordion-panel>
         }
       </p-accordion>
     </div>
-  </div>
+  </section>
 </main>
+<footer class="foot"></footer>

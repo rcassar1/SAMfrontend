@@ -5,6 +5,7 @@
   <app-navigation-bar></app-navigation-bar>
 </header>
 <main>
+  <p-toast></p-toast>
   <div class="card">
     <p-accordion [value]="0">
       @for (announcement of announcements; track announcement._id) {
@@ -14,10 +15,11 @@
           {{ announcement.title }}
         </p-accordion-header>
         <p-accordion-content>
-          <p class="m-0">{{ announcement.announcement }}</p>
+          <p class="m-0" [innerHTML]="announcement.announcement"></p>
         </p-accordion-content>
       </p-accordion-panel>
       }
     </p-accordion>
   </div>
 </main>
+<footer class="foot"></footer>
